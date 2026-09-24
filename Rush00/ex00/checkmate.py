@@ -76,10 +76,9 @@ def checkmate(board):
     for dr, dc in pawn_directions:
         pr = king_r + dr
         pc = king_c + dc
-
-    if 0 <= pr < size and 0 <= pc < size:
-        if lines[pr][pc] == 'P':
-            print("Success")
-            return
+        if 0 <= pr < size and 0 <= pc < size:
+            if lines[pr][pc] == 'P':
+                print("Success")
+                return
 
     print("Fail")
