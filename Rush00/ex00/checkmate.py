@@ -35,6 +35,8 @@ def checkmate(board):
     if king_count != 1:
         return
 
+    chess_pieces = {'R', 'B', 'Q', 'P', 'K'}
+
     # 3. เช็กแนวตรง (ขึ้น, ลง, ซ้าย, ขวา) -> หา Rook ('R') หรือ Queen ('Q')
     straight_directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     for dr, dc in straight_directions: #วนลูปตรวจทีละทิศทางจากทั้งหมด 4 ทิศทาง
@@ -44,7 +46,7 @@ def checkmate(board):
         # วนลูปขยับเดินหน้าไปเรื่อยๆ ตราบใดที่พิกัด (r, c) ยังอยู่ในขอบเขตกระดาน
         while 0 <= r < size and 0 <= c < size:
             piece = lines[r][c] # อ่านค่าตัวหมากในช่องปัจจุบัน
-            if piece != '.': # ถ้าพบตัวหมาก (ไม่ใช่ช่องว่าง '.')
+            if piece in chess_pieces: # ถ้าพบตัวหมาก (ไม่ใช่ช่องว่าง '.')
                 if piece == 'R' or piece == 'Q': # ถ้าตัวหมากนั้นเป็น R หรือ Q แสดงว่า King ถูกรุกแนวตรง!
                     print("Success")# พิมพ์ Success และจบฟังก์ชันทันที
                     return 
@@ -63,7 +65,7 @@ def checkmate(board):
         # วนลูปขยับเดินหน้าในแนวเฉียงไปเรื่อยๆ ตราบใดที่ยังไม่ตกขอบกระดาน
         while 0 <= r < size and 0 <= c < size:
             piece = lines[r][c]
-            if piece != '.':
+            if piece in chess_pieces:
                 if piece == 'B' or piece == 'Q':
                     print("Success")
                     return
