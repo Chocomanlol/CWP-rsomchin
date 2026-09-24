@@ -60,7 +60,7 @@ def checkmate(board):
     diagonal_directions = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
     for dr, dc in diagonal_directions:
         r = king_r + dr
-        c = king_c + dc
+        c = king_c + dc 
         while 0 <= r < size and 0 <= c < size:
             piece = lines[r][c]
             if piece in chess_pieces:
@@ -72,11 +72,14 @@ def checkmate(board):
             c += dc
 
     #เช็กการรุกจากเบี้ย =====================================================
-    pawn_positions = [(king_r + 1, king_c - 1), (king_r + 1, king_c + 1)]
-    for pr, pc in pawn_positions:
-        if 0 <= pr < size and 0 <= pc < size:
-            if lines[pr][pc] == 'P':
-                print("Success")
-                return
+    pawn_directions = [(1, -1), (1, 1)]
+    for dr, dc in pawn_directions:
+        pr = king_r + dr
+        pc = king_c + dc
+
+    if 0 <= pr < size and 0 <= pc < size:
+        if lines[pr][pc] == 'P':
+            print("Success")
+            return
 
     print("Fail")
